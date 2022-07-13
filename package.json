@@ -1,0 +1,32 @@
+{
+  "name": "clone-template-w3schools-br-architects",
+  "version": "1.0.0",
+  "description": "Clone of the BR Architects template available on the W3Schools website",
+  "main": "index.js",
+  "scripts": {
+    "compileSass": "npx sass --watch -s compressed src/sass/input.sass:public/assets/css/style.min.css",
+    "compileTs": "npx tsc -w --outFile public/assets/js/script.js src/photo-gallery-modal/index.ts src/ts/main.ts",
+    "startServer": "npx live-server public",
+    "start": "npm run compileSass & npm run compileTs & npm run startServer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vini-cabral/CLONE-template-W3Schools-BR-Architects.git"
+  },
+  "keywords": [
+    "clone",
+    "frontend",
+    "w3schools"
+  ],
+  "author": "Vinícius Cabral",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vini-cabral/CLONE-template-W3Schools-BR-Architects/issues"
+  },
+  "homepage": "https://github.com/vini-cabral/CLONE-template-W3Schools-BR-Architects#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "sass": "^1.52.3",
+    "typescript": "^4.7.4"
+  }
+}

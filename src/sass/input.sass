@@ -1,0 +1,257 @@
+@use 'var'
+@use 'mix'
+@use '../photo-gallery-modal/_style'
+
+html
+  font-size: 62.5%
+  font-family: 'Roboto', sans-serif
+  scroll-behavior: smooth
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+body
+  @include mix.font-std
+a
+  text-decoration: none
+a,button,img
+  transition: 250ms
+
+#header
+  z-index: 1
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: var.$nav-height
+  @include mix.flex-center
+  background-color: var.$color-header
+  @include mix.offset-x
+  @include mix.shadow
+  &__burger-pilot
+    display: none
+    position: absolute
+  nav
+    width: 100%
+    @include mix.offset-x
+    @include mix.flex-center
+    justify-content: space-between
+    a
+      color: var.$color-02
+      h1
+        span
+          font-weight: 700
+    ul
+      display: none
+      flex-direction: column
+      position: absolute
+      left: 0
+      top: var.$nav-height
+      width: 100%
+      padding: var.$offset 0
+      background-color: var.$color-header
+      @include mix.shadow
+      li
+        a
+          padding-left: var.$gutter
+  &__burger-btn
+    display: flex
+    position: relative
+    width: 2rem
+    height: 1.6rem
+    cursor: pointer
+    span,&::before,&::after
+      content: ''
+      position: absolute
+      width: 100%
+      height: 0.2rem
+      border: 2rem
+      display: block
+      background-color: var.$color-02
+    span:nth-child(1)
+      top: 50%
+      margin-top: -0.1rem
+    &::before
+      top: 0
+    &::after
+      bottom: 0
+  &__burger-pilot:checked ~ nav > ul
+    display: flex
+
+main
+  z-index: 0
+  position: relative
+  width: 100%
+  margin: 0 auto
+  display: flex
+  align-items: center
+  flex-direction: column
+  max-width: var.$max-width-main
+  #home
+    background-image: url('../img/br-architect.jpg')
+    background-repeat: no-repeat
+    background-position-y: center
+    background-position-x: 58%
+    width: 100%
+    max-width: var.$max-width
+    height: 100vh
+    max-height: 80rem
+    margin: 0 -1*var.$offset
+    @include mix.flex-center
+    h1
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+      line-height: 5.4rem
+      font-size: 3.6rem
+      letter-spacing: 0.4rem
+      font-weight: 400
+      color: var.$color-01
+      span
+        background-color: var.$color-02
+        font-weight: 700
+        @include mix.padding-std
+        margin-right: 1.2rem
+        opacity: 0.8
+  .section
+    width: 100%
+    margin: 0 auto
+    display: flex
+    flex-wrap: wrap
+    @include mix.padding-std
+    .section__text
+      width: 100%
+      padding: var.$gutter var.$offset
+      h2
+        @include mix.offset-y
+        @include mix.title-2
+        border-bottom: 1px solid var.$color-03
+      p
+        @include mix.paragraph
+  #projects__gallery
+    @include mix.gallery
+    grid-template-columns: 1fr
+    .projects__card
+      display: flex
+      flex-wrap: wrap
+      cursor: pointer
+      overflow: hidden
+      h3
+        position: relative
+        z-index: 1
+        @include mix.btn-1
+        @include mix.btn-1-hover
+        border-radius: 0
+      h3:hover
+        @include mix.btn-1
+        border-radius: 0
+      h3:active
+        @include mix.btn-1-hover
+        border-radius: 0
+      img
+        position: relative
+        z-index: 0
+        width: 100%
+        margin-top: -4.5rem
+        filter: grayscale(60%)
+      img:hover
+        filter: grayscale(0)
+  #about__gallery
+    @include mix.gallery
+    grid-template-columns: 1fr
+    .about_card
+      display: flex
+      flex-wrap: wrap
+      img
+        width: 100%
+        filter: grayscale(80%)
+      h3
+        @include mix.title-2
+      h4
+        @include mix.paragraph
+        opacity: 0.6
+      p
+        @include mix.paragraph
+    .about_card:hover img
+      filter: grayscale(0)
+    .btn-card
+      @include mix.btn-1
+      width: 100%
+    .btn-card:hover
+      @include mix.btn-1-hover
+    .btn-card:active
+      @include mix.btn-1-active
+  #contact
+    &__content
+      @include mix.gallery
+      padding: 0
+      grid-template-columns: 1fr
+      form
+        input, textarea
+          width: 100%
+          padding: 0.5*var.$offset
+          border-radius: 0.4rem
+          border: 1px solid var.$color-03
+          margin-bottom: var.$offset
+        input
+          height: 4.05rem
+        button
+          @include mix.btn-1
+          @include mix.btn-1-hover
+          margin: var.$offset 0 0 0
+        button:hover
+          @include mix.btn-1
+        button:active
+          @include mix.btn-1-hover
+      &__map
+        padding: var.$offset 0 0 0
+        box-sizing: border-box
+        width: 100%
+        min-height: 400px
+        height: 100%
+
+#credits
+  z-index: 0
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: var.$offset var.$gutter
+  text-align: center
+  background-color: var.$color-02
+  color: var.$color-01
+  line-height: 1.8rem
+  a
+    color: #26ce26
+  a:hover
+    text-decoration: underline
+
+@include mix.tablet
+  #header
+    nav
+      ul
+        display: flex
+        flex-direction: row
+        position: static
+        left: initial
+        top: initial
+        width: auto
+        padding: 0
+        background-color: transparent
+        @include mix.rm-shadow
+        a:hover
+          opacity: 0.8
+    &__burger-btn
+      display: none
+
+  main
+    #projects__gallery, #about__gallery
+      grid-template-columns: 1fr 1fr
+
+@include mix.desktop
+  main
+    #projects__gallery, #about__gallery
+      grid-template-columns: 1fr 1fr 1fr 1fr
+    #contact
+      &__content
+        grid-template-columns: 2fr 2fr
+        &__map
+          min-height: initial
